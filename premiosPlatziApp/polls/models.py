@@ -10,7 +10,7 @@ class Question(models.Model):
         return self.question_text
 
     def was_published_rerently(self):
-        return self.pub_date >= timezone.now() - datetime.timedelta(days=1) #Si es menor que un día regresa true
+        return timezone.now() >= self.pub_date >= timezone.now() - datetime.timedelta(days=1) #Si es menor que un día regresa true
 
 class Choice(models.Model):
     question = models.ForeignKey(Question, on_delete = models.CASCADE)
